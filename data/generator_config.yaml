@@ -1,0 +1,52 @@
+dataset_version: pcm-thermal-storage-v1.0.0
+release_mode: frozen_canonical_csv
+exact_original_generator_available: false
+documented_reconstruction_seed: 42
+row_count: 50000
+field_count: 33
+time_index:
+  start: "2023-01-01 00:00:00"
+  end: "2028-09-14 07:00:00"
+  interpretation: ordered scenario index
+branch_counts:
+  pcm_type:
+    Organic_Paraffin: 22372
+    Inorganic_SaltHydrate: 17686
+    Eutectic: 9942
+  system_type:
+    BuildingEnvelope: 19915
+    SolarTES: 12672
+    BatteryCooling: 9865
+    HVACStorage: 7548
+  encapsulation_type:
+    Macro: 22568
+    Micro: 17434
+    ShapeStabilized: 9998
+documented_ranges:
+  air_temperature_c: [-0.46, 44.29]
+  relative_humidity_pct: [27.44, 98.0]
+  wind_speed_mps: [0.10, 14.0]
+  cloud_cover_pct: [0.0, 100.0]
+  solar_irradiance_wm2: [0.0, 896.84]
+  inlet_fluid_temp_c: [-1.32, 54.31]
+  melting_point_c: [18.0, 48.0]
+  latent_heat_kjkg: [150.02, 280.0]
+  thermal_conductivity_wmk: [0.18, 0.73]
+  density_kgm3: [760.0, 1699.99]
+  specific_heat_jkgk: [1400.01, 2599.99]
+  pcm_mass_kg: [8.0, 160.0]
+  surface_area_m2: [1.20, 11.81]
+  pcm_thickness_mm: [4.0, 40.0]
+  mass_flow_rate_kgs: [0.03, 0.40]
+  cycle_number: [1, 2500]
+derived_bounds:
+  degradation_factor: [0.829, 1.017]
+  phase_fraction: [0.0, 1.0]
+  energy_loss_pct: [2.0, 35.0]
+  state_of_charge_pct: [0.0, 100.0]
+  thermal_storage_efficiency_pct: [35.0, 98.0]
+validity:
+  BuildingEnvelope: directly_supported_branch
+  SolarTES: unvalidated_scenario_extension
+  BatteryCooling: unvalidated_scenario_extension
+  HVACStorage: unvalidated_scenario_extension

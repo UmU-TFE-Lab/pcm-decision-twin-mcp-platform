@@ -1,0 +1,34 @@
+field,data_type,unit,role,source_support,construction_status,notes
+timestamp,datetime,hour,index,IDA-ICE context,scenario index,Ordered scenario index rather than continuous monitoring
+pcm_type,category,none,configuration,experiment informed,sampled branch,Organic paraffin salt hydrate or eutectic
+system_type,category,none,configuration,mixed evidence,sampled branch,Building envelope direct support and other systems scenario extensions
+encapsulation_type,category,none,configuration,experiment informed,sampled branch,Macro micro or shape stabilized
+air_temperature_c,float,degC,observed input,experiment and IDA-ICE,scenario sampled,Weather and thermal boundary context
+relative_humidity_pct,float,percent,observed input,weather context,scenario sampled,Environmental forcing
+wind_speed_mps,float,m/s,observed input,weather context,scenario sampled,Environmental forcing
+cloud_cover_pct,float,percent,observed input,weather context,scenario sampled,Solar boundary modifier
+solar_irradiance_wm2,float,W/m2,observed input,weather and IDA-ICE,scenario sampled,Solar boundary condition
+inlet_fluid_temp_c,float,degC,controllable input,IDA-ICE partial,scenario sampled,Charging or discharging boundary
+melting_point_c,float,degC,material input,experiment informed,scenario sampled,Material-family phase-change range
+latent_heat_kjkg,float,kJ/kg,material input,experiment informed,scenario sampled,Material-family latent heat
+thermal_conductivity_wmk,float,W/(m K),material input,experiment informed,scenario sampled,Material and encapsulation dependent
+density_kgm3,float,kg/m3,material input,material range,scenario sampled,Material-family density
+specific_heat_jkgk,float,J/(kg K),material input,material range,scenario sampled,Material-family heat capacity
+pcm_mass_kg,float,kg,design input,scenario design,scenario sampled,Storage quantity
+surface_area_m2,float,m2,design input,scenario design,scenario sampled,Heat-transfer area
+pcm_thickness_mm,float,mm,design input,experiment and IDA-ICE partial,scenario sampled,PCM layer thickness
+mass_flow_rate_kgs,float,kg/s,controllable input,scenario operation,scenario sampled,Fluid-coupled operation
+cycle_number,integer,cycles,ageing input,scenario operation,scenario sampled,Cycling-age state
+degradation_factor,float,ratio,latent state,post-processing,derived,Cycling-stability indicator
+temp_difference_c,float,degC,helper state,physics relation,derived,Inlet temperature minus melting point
+phase_fraction,float,ratio,latent state,physics relation,derived,Bounded phase-transition state
+heat_transfer_coeff_wm2k,float,W/(m2 K),helper response,physics relation,derived,Flow geometry and encapsulation response
+heat_flux_wm2,float,W/m2,downstream output,physics relation,derived,Heat-transfer response
+stored_energy_kj,float,kJ,predicted state,energy relation,derived,Stored thermal energy
+energy_input_kj,float,kJ,downstream output,energy relation,derived,Input-energy accounting
+charging_time_min,float,min,downstream output,operating relation,derived,Charging duration proxy
+discharging_time_min,float,min,downstream output,operating relation,derived,Discharging duration proxy
+energy_loss_pct,float,percent,predicted state,energy relation,derived,Bounded loss indicator
+state_of_charge_pct,float,percent,latent state,energy relation,derived,Bounded charge state
+cooling_load_offset_pct,float,percent,downstream output,IDA-ICE informed,derived,Excluded from estimator inputs because of leakage risk
+thermal_storage_efficiency_pct,float,percent,predicted state,energy relation,derived,Bounded at the observed 35 percent floor and 98 percent cap

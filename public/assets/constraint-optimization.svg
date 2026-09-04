@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="960" height="520" viewBox="0 0 960 520" role="img" aria-labelledby="title desc">
+  <title id="title">Constraint-aware optimization</title>
+  <desc id="desc">Candidate filtering into feasible and rejected groups according to data support, loss, SOC, and evidence constraints.</desc>
+  <rect width="960" height="520" rx="24" fill="#f6f8f7"/>
+  <rect x="42" y="42" width="876" height="436" rx="18" fill="#ffffff" stroke="#dfe7e4" stroke-width="2"/>
+  <text x="76" y="92" fill="#17211f" font-family="Inter, Arial, sans-serif" font-size="28" font-weight="800">Constraint-Aware Optimization</text>
+  <text x="76" y="124" fill="#65716f" font-family="Inter, Arial, sans-serif" font-size="16">Candidate designs are ranked first, then filtered by engineering constraints</text>
+  <g font-family="Inter, Arial, sans-serif">
+    <g transform="translate(78 204)">
+      <rect width="210" height="154" rx="14" fill="#f6f8f7" stroke="#dfe7e4"/>
+      <text x="105" y="36" text-anchor="middle" fill="#17211f" font-size="16" font-weight="800">Ranked candidates</text>
+      <text x="105" y="68" text-anchor="middle" fill="#65716f" font-size="12">PCM + system + encapsulation</text>
+      <text x="105" y="94" text-anchor="middle" fill="#65716f" font-size="12">score, data support, loss, SOC</text>
+    </g>
+    <g transform="translate(374 184)">
+      <rect width="212" height="194" rx="14" fill="#fff0d6" stroke="#f0d6a7"/>
+      <text x="106" y="38" text-anchor="middle" fill="#b97012" font-size="16" font-weight="800">Constraint filter</text>
+      <text x="106" y="74" text-anchor="middle" fill="#5e4b25" font-size="12">minimum data support</text>
+      <text x="106" y="100" text-anchor="middle" fill="#5e4b25" font-size="12">maximum loss</text>
+      <text x="106" y="126" text-anchor="middle" fill="#5e4b25" font-size="12">minimum SOC</text>
+      <text x="106" y="152" text-anchor="middle" fill="#5e4b25" font-size="12">direct evidence rule</text>
+    </g>
+    <g transform="translate(680 162)">
+      <rect width="200" height="92" rx="14" fill="#dff3f0" stroke="#a8d9d4"/>
+      <text x="100" y="38" text-anchor="middle" fill="#0b7f79" font-size="16" font-weight="800">Feasible</text>
+      <text x="100" y="62" text-anchor="middle" fill="#35514e" font-size="12">can be recommended</text>
+    </g>
+    <g transform="translate(680 304)">
+      <rect width="200" height="92" rx="14" fill="#fde8ec" stroke="#efc7cf"/>
+      <text x="100" y="38" text-anchor="middle" fill="#b34a5a" font-size="16" font-weight="800">Rejected</text>
+      <text x="100" y="62" text-anchor="middle" fill="#69333d" font-size="12">reason is shown</text>
+    </g>
+    <g stroke="#aab8b5" stroke-width="3" stroke-linecap="round">
+      <line x1="300" y1="282" x2="362" y2="282"/>
+      <line x1="598" y1="282" x2="664" y2="208"/>
+      <line x1="598" y1="282" x2="664" y2="350"/>
+    </g>
+  </g>
+</svg>

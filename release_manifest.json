@@ -1,0 +1,63 @@
+{
+  "release": "v0.2.0-research-prototype",
+  "status": "research",
+  "canonical_project": "PCM_DecisionTwin_MCP_Agent_Platform",
+  "dataset": {
+    "version": "pcm-thermal-storage-v1.0.0",
+    "file": "pcm_thermal_storage.csv",
+    "rows": 50000,
+    "fields": 33,
+    "sha256": "b3f7b665ead48f41ec58c12883ba80f341d27495925977885e20486d76f23db8"
+  },
+  "estimator": {
+    "name": "evidence-grounded-similarity-estimator",
+    "version": "0.4.0",
+    "neighbors": 220
+  },
+  "agent_workflow": {
+    "version": "0.5.0",
+    "execution_modes": [
+      "mcp-gateway",
+      "local-fallback"
+    ]
+  },
+  "mcp": {
+    "server_version": "0.2.0",
+    "tools": 18,
+    "resources": 4,
+    "prompts": 3,
+    "transport": "stdio behind HTTP/SSE gateway"
+  },
+  "benchmark": {
+    "name": "pcm-mcp-agent-workflow",
+    "version": "0.3.0",
+    "cases": 45
+  },
+  "frontend": {
+    "version": "0.2.0"
+  },
+  "backend": {
+    "version": "0.2.0",
+    "local_test_database": "SQLite",
+    "lifecycle_entities": [
+      "projects",
+      "dataset_versions",
+      "model_versions",
+      "scenarios",
+      "predictions",
+      "reports",
+      "mcp_logs"
+    ]
+  },
+  "model_service": {
+    "version": "0.2.0",
+    "model": "evidence-grounded-similarity-estimator",
+    "status": "implemented_local_service"
+  },
+  "verification": {
+    "node_unit_tests": 5,
+    "node_integration_tests": 5,
+    "python_service_tests": 4,
+    "browser_tests": 2
+  }
+}

@@ -1,0 +1,77 @@
+services:
+  postgres:
+    image: postgres:16
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-pcm_twin}
+      POSTGRES_USER: ${POSTGRES_USER:-pcm}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  minio:
+    image: minio/minio:latest
+    command: server /data --console-address ":9001"
+    environment:
+      MINIO_ROOT_USER: ${MINIO_ROOT_USER:?Set MINIO_ROOT_USER in .env}
+      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD:?Set MINIO_ROOT_PASSWORD in .env}
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    volumes:
+      - minio-data:/data
+
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    environment:
+      DATABASE_URL: ${DATABASE_URL:?Set DATABASE_URL in .env}
+      JWT_SECRET: ${JWT_SECRET:?Set JWT_SECRET in .env}
+      ADMIN_EMAIL: ${ADMIN_EMAIL:-admin@example.com}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD:?Set ADMIN_PASSWORD in .env}
+      CORS_ORIGINS: ${CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}
+      S3_ENDPOINT_URL: http://minio:9000
+      S3_BUCKET: ${S3_BUCKET:-pcm-datasets}
+      S3_ACCESS_KEY_ID: ${MINIO_ROOT_USER:?Set MINIO_ROOT_USER in .env}
+      S3_SECRET_ACCESS_KEY: ${MINIO_ROOT_PASSWORD:?Set MINIO_ROOT_PASSWORD in .env}
+      MODEL_SERVICE_URL: http://model-service:9000
+      LOCAL_DATASET_PATH: /pcm_thermal_storage.csv
+    depends_on:
+      postgres:
+        condition: service_healthy
+      minio:
+        condition: service_started
+      model-service:
+        condition: service_started
+    ports:
+      - "8000:8000"
+
+  model-service:
+    build:
+      context: .
+      dockerfile: model_service/Dockerfile
+    ports:
+      - "9002:9000"
+
+  mcp-gateway:
+    build:
+      context: .
+      dockerfile: mcp_gateway/Dockerfile
+    environment:
+      MCP_GATEWAY_HOST: 0.0.0.0
+      MCP_GATEWAY_PORT: 8787
+      MCP_GATEWAY_CORS_ORIGINS: http://localhost:5173,http://127.0.0.1:5173
+      PCM_DATASET_PATH: /app/pcm_thermal_storage.csv
+    ports:
+      - "8787:8787"
+
+volumes:
+  postgres-data:
+  minio-data:
