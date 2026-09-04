@@ -19,7 +19,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: npm ci
+      - run: npm ci --no-audit
       - run: npm run test:fixture
       - run: npm run build
       - run: npm test
@@ -28,3 +28,7 @@ jobs:
       - run: npm run mcp:smoke
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
+      - name: Dependency advisory audit
+        continue-on-error: true
+        timeout-minutes: 2
+        run: npx --yes npm@11 audit --audit-level=high
