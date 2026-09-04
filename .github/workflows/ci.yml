@@ -28,7 +28,3 @@ jobs:
       - run: npm run mcp:smoke
       - run: npx playwright install --with-deps chromium
       - run: npm run test:e2e
-      - name: Dependency advisory audit
-        continue-on-error: true
-        timeout-minutes: 2
-        run: npx --yes npm@11 audit --audit-level=high
