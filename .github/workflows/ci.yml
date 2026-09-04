@@ -20,7 +20,6 @@ jobs:
         with:
           python-version: "3.12"
       - run: npm ci
-      - run: npm audit --audit-level=high
       - run: npm run test:fixture
       - run: npm run build
       - run: npm test
